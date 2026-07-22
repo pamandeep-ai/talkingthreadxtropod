@@ -403,13 +403,13 @@
 
     .collection-layout{grid-template-columns:1fr;padding:24px 16px 60px;}
     .filters{display:none;}
-    .mobile-filter-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;padding:9px 16px;font-size:12px;border-radius:1px;white-space:nowrap;}
+    .mobile-filter-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.55);backdrop-filter:blur(10px) saturate(160%);-webkit-backdrop-filter:blur(10px) saturate(160%);padding:7px 13px;font-size:11px;border-radius:9px;white-space:nowrap;box-shadow:0 3px 10px rgba(20,10,5,.1);}
     .product-grid{grid-template-columns:repeat(2,1fr);gap:16px 12px;}
     .toolbar{padding:14px 16px 10px;gap:10px;flex-direction:column;align-items:stretch;position:static;top:auto;border-bottom:none;}
-    .toolbar-right{position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -6px 20px rgba(0,0,0,.08);padding:10px 16px calc(10px + env(safe-area-inset-bottom));flex-wrap:wrap;gap:8px;}
+    .toolbar-right{position:fixed;left:0;right:0;bottom:0;z-index:70;background:rgba(255,255,255,.62);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-top:1px solid rgba(255,255,255,.55);box-shadow:0 -8px 24px rgba(20,10,5,.14);padding:8px 13px calc(8px + env(safe-area-inset-bottom));flex-wrap:wrap;gap:7px;}
     .mobile-filter-btn{flex:1;justify-content:center;order:1;}
-    .sort-select{flex:1;min-width:0;order:2;}
-    .consult-pill{width:100%;text-align:center;order:3;border-radius:2px;padding:14px;font-size:12.5px;font-weight:600;letter-spacing:.06em;}
+    .sort-select{flex:1;min-width:0;order:2;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.55);backdrop-filter:blur(10px) saturate(160%);-webkit-backdrop-filter:blur(10px) saturate(160%);border-radius:9px;box-shadow:0 3px 10px rgba(20,10,5,.1);padding:7px 11px;font-size:11px;}
+    .consult-pill{width:100%;text-align:center;order:3;border-radius:9px;padding:11px;font-size:11px;font-weight:600;letter-spacing:.06em;background:rgba(59,36,21,.88);backdrop-filter:blur(8px) saturate(160%);-webkit-backdrop-filter:blur(8px) saturate(160%);border:1px solid rgba(255,255,255,.18);box-shadow:0 4px 14px rgba(20,10,5,.22);}
     .collection-layout{padding-bottom:130px;}
     .main-nav{display:none;}
     .mobile-nav-toggle{display:flex;}
