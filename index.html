@@ -105,9 +105,15 @@
     75%{opacity:.45;}
     100%{opacity:0;transform:translate(6px,-72px) scale(1);}
   }
+
+  /* hero copy reveals word by word on load */
+  .reveal-word{display:inline-block;opacity:0;transform:translateY(10px);animation:wordReveal .6s cubic-bezier(.19,1,.22,1) forwards;}
+  @keyframes wordReveal{to{opacity:1;transform:translateY(0);}}
+
   @media (prefers-reduced-motion: reduce){
     .sparkle,.feather-divider::after,.garland-strip::after{animation:none !important;}
     .hero-pattern,.mid-banner::before{background-image:var(--medallion-static) !important;}
+    .reveal-word{animation:none !important;opacity:1 !important;transform:none !important;}
   }
 
   header{background:var(--paper);border-bottom:1px solid var(--line);}
@@ -579,7 +585,7 @@
   <div class="hero-inner">
     <div class="breadcrumb"><a href="#">Home</a> / <a href="#">Occasion</a> / Sangeet</div>
     <h1>Sangeet</h1>
-    <p>178 pieces, each hand-embroidered over weeks by our Delhi ateliers. Take your time with this collection: every silhouette here is made to measure, not pulled off a rack.</p>
+    <p id="heroReveal">178 pieces, each hand-embroidered over weeks by our Delhi ateliers. Take your time with this collection: every silhouette here is made to measure, not pulled off a rack.</p>
   </div>
   <div class="garland-strip"></div>
 </section>
@@ -1057,6 +1063,20 @@
     if(overlay) overlay.classList.remove('open');
     document.body.style.overflow = '';
   }
+
+  // reveal the hero paragraph one word at a time, timed to start as the preloader fades
+  (function(){
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var p = document.getElementById('heroReveal');
+    if(!p || reduceMotion) return;
+    var words = p.textContent.trim().split(/\s+/);
+    var baseDelay = 0.95;
+    var stepDelay = 0.045;
+    p.innerHTML = words.map(function(word, i){
+      var delay = (baseDelay + i * stepDelay).toFixed(3);
+      return '<span class="reveal-word" style="animation-delay:' + delay + 's">' + word + '</span>';
+    }).join(' ');
+  })();
 
   window.addEventListener('load', function(){
     setTimeout(function(){
