@@ -65,6 +65,7 @@
     .reveal-word{animation:none !important;opacity:1 !important;transform:none !important;}
     .trust-strip .item .shine-text{animation:none !important;}
     .trust-strip::after{animation:none !important;}
+    .tag-row{animation:none !important;opacity:1 !important;}
   }
 
   header{background:rgba(255,255,255,.6);backdrop-filter:blur(18px) saturate(180%);-webkit-backdrop-filter:blur(18px) saturate(180%);border-bottom:1px solid rgba(255,255,255,.5);}
@@ -170,10 +171,17 @@
   .product-img img{width:100%;height:100%;object-fit:cover;object-position:top center;}
   .wishlist-btn{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.45);backdrop-filter:blur(10px) saturate(180%);-webkit-backdrop-filter:blur(10px) saturate(180%);border:1px solid rgba(255,255,255,.6);box-shadow:0 4px 14px rgba(20,10,5,.18);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--wine);cursor:pointer;z-index:3;}
   .tag-row{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:6px;z-index:3;}
+  @keyframes tagAppearDisappear{
+    0%,55%{opacity:1;}
+    65%,90%{opacity:0;}
+    100%{opacity:1;}
+  }
   .tag{font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:5px;backdrop-filter:blur(8px) saturate(180%);-webkit-backdrop-filter:blur(8px) saturate(180%);box-shadow:0 3px 10px rgba(20,10,5,.16);border:1px solid rgba(255,255,255,.25);}
   .tag-bespoke{background:rgba(30,26,22,.62);color:var(--gold-light);border-color:rgba(255,255,255,.18);}
   .tag-express{background:rgba(212,167,88,.7);color:var(--ink);border-color:rgba(255,255,255,.4);}
   .tag-lowstock{background:rgba(255,255,255,.55);color:var(--ink);border:1px solid rgba(20,20,20,.35);}
+  .tag-bestseller{background:rgba(122,30,46,.72);color:#fff;border-color:rgba(255,255,255,.3);}
+  .tag-bestreviewed{background:rgba(144,114,60,.78);color:#fff;border-color:rgba(255,255,255,.35);}
 
   .product-info{padding:10px 4px 0;}
   .product-name{font-family:var(--font-display);font-size:15px;font-weight:500;margin-bottom:4px;line-height:1.35;}
@@ -437,6 +445,7 @@
     .wordmark .line1{font-size:15px;}
     .wordmark .line2{font-size:6.5px;}
     .wishlist-btn{width:36px;height:36px;top:10px;right:10px;}
+    .tag-row{animation:tagAppearDisappear 7s ease-in-out infinite;}
     .color-swatch{width:28px;height:28px;}
 
     .trust-strip .wrap{justify-content:center;gap:7px 15px;padding:10px 13px;font-size:12.5px;text-align:center;}
@@ -714,9 +723,7 @@
 
     <div class="product-card" data-embroidery="Bead &amp; crystal work" data-fabric="Georgette" data-availability="express" data-customisation="true">
       <div class="product-img">
-        <div class="tag-row"><span class="tag tag-express">Express: 28 days</span></div>
-        <button class="wishlist-btn" aria-label="Add to wishlist"><svg class="icon-heart" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20.3C12 20.3 3.6 15 3.6 8.9C3.6 5.7 6 3.6 8.7 3.6C10.5 3.6 11.6 4.7 12 5.4C12.4 4.7 13.5 3.6 15.3 3.6C18 3.6 20.4 5.7 20.4 8.9C20.4 15 12 20.3 12 20.3Z"/></svg></button>
-        <button class="quickview-btn" data-img="https://www.talkingthreads.in/cdn/shop/files/TT-1777SK-LG03T4_5c64ee7b-0b66-4c73-91d1-bec028b193e4_800x.jpg?v=1775485366" data-name="Ivory Bead & Crystal Embroidered Skirt Set with Dupatta" aria-label="Quick view"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg><span class="qv-btn-label">Quick View</span></button>
+        <div class="tag-row"><span class="tag tag-express">Express: 28 days</span><span class="tag tag-bestreviewed">Best Reviewed</span></div>
         <div class="img-track"><video class="product-main-video" autoplay muted loop playsinline preload="auto" poster="assets/ivory-skirt-main-poster.jpg" aria-label="Ivory Bead & Crystal Embroidered Skirt Set with Dupatta video"><source src="assets/ivory-skirt-main.mp4" type="video/mp4"></video><img src="https://www.talkingthreads.in/cdn/shop/files/TT-1777SK-LG03_c3837c6b-d821-4935-826d-4308cf85e474_800x.jpg?v=1775485365" alt="Ivory Bead & Crystal Embroidered Skirt Set with Dupatta" loading="lazy"></div><div class="img-dots"><button class="img-dot active" aria-label="Image 1"></button><button class="img-dot" aria-label="Image 2"></button></div>
       </div>
       <div class="product-info">
@@ -759,6 +766,7 @@
 
     <div class="product-card" data-embroidery="Mirror &amp; crystal embroidery" data-fabric="Satin" data-availability="made-to-order" data-customisation="true">
       <div class="product-img">
+        <div class="tag-row"><span class="tag tag-bestseller">The Bestseller</span></div>
         <button class="wishlist-btn" aria-label="Add to wishlist"><svg class="icon-heart" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20.3C12 20.3 3.6 15 3.6 8.9C3.6 5.7 6 3.6 8.7 3.6C10.5 3.6 11.6 4.7 12 5.4C12.4 4.7 13.5 3.6 15.3 3.6C18 3.6 20.4 5.7 20.4 8.9C20.4 15 12 20.3 12 20.3Z"/></svg></button>
         <button class="quickview-btn" data-img="https://www.talkingthreads.in/cdn/shop/files/TT-2197KS-LH07_800x.jpg?v=1783606631" data-name="Sunlit Mirrorwork Embroidered Sharara Set" aria-label="Quick view"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg><span class="qv-btn-label">Quick View</span></button>
         <div class="img-track">
