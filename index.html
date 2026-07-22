@@ -46,35 +46,7 @@
   /* sangeet-themed background graphics */
   .hero-pattern{position:absolute;inset:0;z-index:1;opacity:.09;background-repeat:repeat;background-size:120px 120px;background-image:var(--medallion-peacock);}
   .hero-glow{position:absolute;top:-120px;right:-100px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(216,185,121,.25),transparent 70%);z-index:1;}
-  .garland-strip{position:absolute;left:0;right:0;bottom:-1px;height:26px;z-index:2;overflow:visible;background-repeat:repeat-x;background-size:44px 26px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='26' viewBox='0 0 44 26'%3E%3Cpath d='M0 0 Q11 20 22 0 Q33 20 44 0' fill='none' stroke='%2390723C' stroke-width='1.2'/%3E%3Ccircle cx='11' cy='13' r='4.2' fill='%23B9793B'/%3E%3Ccircle cx='11' cy='13' r='1.6' fill='%23F2BA74'/%3E%3Ccircle cx='33' cy='13' r='4.2' fill='%23B9793B'/%3E%3Ccircle cx='33' cy='13' r='1.6' fill='%23F2BA74'/%3E%3Ccircle cx='0' cy='2' r='2.6' fill='%23B9793B'/%3E%3Ccircle cx='22' cy='2' r='2.6' fill='%23B9793B'/%3E%3Ccircle cx='44' cy='2' r='2.6' fill='%23B9793B'/%3E%3C/svg%3E");}
   .sparkle{position:absolute;border-radius:50%;background:radial-gradient(circle,var(--gold-light),rgba(242,186,116,0) 72%);opacity:0;animation:goldDustFloat 12s ease-in-out infinite;pointer-events:none;}
-
-  /* candlelight sweep: a soft golden sheen glides over the existing decorative
-     border every 8 to 10s, like light catching handcrafted jewelry. The border
-     artwork itself (garland-strip) is untouched. */
-  .garland-strip::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(100deg,
-      rgba(242,186,116,0) 42%,
-      rgba(242,186,116,.6) 50%,
-      rgba(242,186,116,0) 58%);
-    background-repeat:no-repeat;
-    background-size:220% 100%;
-    background-position:150% 0;
-    mix-blend-mode:screen;
-    pointer-events:none;
-    animation:candleSweep 9s ease-in-out infinite;
-    animation-delay:.6s;
-  }
-
-  @keyframes candleSweep{
-    0%,78%{background-position:150% 0;opacity:0;}
-    82%{opacity:.9;}
-    92%{background-position:-70% 0;opacity:.9;}
-    97%,100%{background-position:-70% 0;opacity:0;}
-  }
 
   @keyframes goldDustFloat{
     0%{opacity:0;transform:translate(0,0) scale(.7);}
@@ -88,7 +60,7 @@
   @keyframes wordReveal{to{opacity:1;transform:translateY(0);}}
 
   @media (prefers-reduced-motion: reduce){
-    .sparkle,.garland-strip::after{animation:none !important;}
+    .sparkle{animation:none !important;}
     .hero-pattern,.mid-banner::before{background-image:var(--medallion-peacock-static) !important;}
     .reveal-word{animation:none !important;opacity:1 !important;transform:none !important;}
   }
@@ -554,7 +526,6 @@
     <h1>Sangeet</h1>
     <p id="heroReveal">178 pieces, each hand-embroidered over weeks by our Delhi ateliers. Take your time with this collection: every silhouette here is made to measure, not pulled off a rack.</p>
   </div>
-  <div class="garland-strip"></div>
 </section>
 
 <div class="trust-strip">
