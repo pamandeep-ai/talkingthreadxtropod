@@ -133,6 +133,26 @@
   .trust-strip{background:var(--gold-light);color:var(--ink);}
   .trust-strip .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:14px 28px;font-size:12px;letter-spacing:.03em;font-weight:500;}
   .trust-strip .item{display:flex;align-items:center;gap:7px;}
+  .trust-strip .item .shine-text{
+    display:inline-block;
+    background:linear-gradient(100deg, var(--ink) 30%, var(--gold) 45%, #fff 50%, var(--gold) 55%, var(--ink) 70%);
+    background-size:250% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:trustShine 3.4s ease-in-out infinite, trustBold 3.4s ease-in-out infinite;
+  }
+  .trust-strip .item:nth-child(2) .shine-text{animation-delay:.4s;}
+  .trust-strip .item:nth-child(3) .shine-text{animation-delay:.8s;}
+  .trust-strip .item:nth-child(4) .shine-text{animation-delay:1.2s;}
+  @keyframes trustShine{
+    0%{background-position:200% 0;}
+    100%{background-position:-200% 0;}
+  }
+  @keyframes trustBold{
+    0%,100%{font-weight:500;}
+    50%{font-weight:800;}
+  }
 
   /* toolbar */
   .toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding:16px 28px;border-bottom:1px solid var(--line);max-width:1280px;margin:0 auto;position:sticky;top:44px;z-index:50;background:var(--paper);}
@@ -546,10 +566,10 @@
 
 <div class="trust-strip">
   <div class="wrap">
-    <div class="item"><svg class="icon-sparkle" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.2 9.8 L22 12 L14.2 14.2 L12 22 L9.8 14.2 L2 12 L9.8 9.8 Z"/></svg> Made-to-measure, every order</div>
-    <div class="item"><svg class="icon-sparkle" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.2 9.8 L22 12 L14.2 14.2 L12 22 L9.8 14.2 L2 12 L9.8 9.8 Z"/></svg> In-house Delhi ateliers</div>
-    <div class="item"><svg class="icon-sparkle" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.2 9.8 L22 12 L14.2 14.2 L12 22 L9.8 14.2 L2 12 L9.8 9.8 Z"/></svg> Ships worldwide</div>
-    <div class="item"><svg class="icon-sparkle" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.2 9.8 L22 12 L14.2 14.2 L12 22 L9.8 14.2 L2 12 L9.8 9.8 Z"/></svg> 184 reviews, 93% five-star</div>
+    <div class="item"><svg class="icon-sparkle" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.2 9.8 L22 12 L14.2 14.2 L12 22 L9.8 14.2 L2 12 L9.8 9.8 Z"/></svg> <span class="shine-text">Made-to-measure, every order</span></div>
+    <div class="item"><svg class="icon-sparkle" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.2 9.8 L22 12 L14.2 14.2 L12 22 L9.8 14.2 L2 12 L9.8 9.8 Z"/></svg> <span class="shine-text">In-house Delhi ateliers</span></div>
+    <div class="item"><svg class="icon-sparkle" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.2 9.8 L22 12 L14.2 14.2 L12 22 L9.8 14.2 L2 12 L9.8 9.8 Z"/></svg> <span class="shine-text">Ships worldwide</span></div>
+    <div class="item"><svg class="icon-sparkle" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 L14.2 9.8 L22 12 L14.2 14.2 L12 22 L9.8 14.2 L2 12 L9.8 9.8 Z"/></svg> <span class="shine-text">184 reviews, 93% five-star</span></div>
   </div>
 </div>
 
