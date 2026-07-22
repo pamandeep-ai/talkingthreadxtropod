@@ -42,9 +42,6 @@
   @keyframes preloaderFade{0%{opacity:0;transform:translateY(6px);}100%{opacity:1;transform:translateY(0);}}
   @keyframes preloaderPulse{0%,100%{opacity:.25;}50%{opacity:1;}}
 
-  /* feather divider signature element */
-  .feather-divider{height:14px;position:relative;overflow:visible;background-repeat:repeat-x;background-size:28px 14px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14' viewBox='0 0 28 14'%3E%3Cpath d='M14 1 C18 4, 18 10, 14 13 C10 10, 10 4, 14 1 Z' fill='none' stroke='%2390723C' stroke-width='1'/%3E%3Ccircle cx='14' cy='7' r='1.4' fill='%2390723C'/%3E%3C/svg%3E");}
-
   /* header */
   /* sangeet-themed background graphics */
   .hero-pattern{position:absolute;inset:0;z-index:1;opacity:.09;background-repeat:repeat;background-size:120px 120px;background-image:var(--medallion-peacock);}
@@ -54,7 +51,7 @@
 
   /* candlelight sweep: a soft golden sheen glides over the existing decorative
      border every 8 to 10s, like light catching handcrafted jewelry. The border
-     artwork itself (feather-divider / garland-strip) is untouched. */
+     artwork itself (garland-strip) is untouched. */
   .garland-strip::after{
     content:"";
     position:absolute;
@@ -70,28 +67,6 @@
     pointer-events:none;
     animation:candleSweep 9s ease-in-out infinite;
     animation-delay:.6s;
-  }
-
-  /* continuous shine: the dotted feather-divider gets an uninterrupted,
-     looping sheen rather than an occasional pass. */
-  .feather-divider::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(100deg,
-      rgba(242,186,116,0) 0%,
-      rgba(242,186,116,.85) 50%,
-      rgba(242,186,116,0) 100%);
-    background-repeat:no-repeat;
-    background-size:55% 100%;
-    mix-blend-mode:screen;
-    pointer-events:none;
-    animation:feathersShineLoop 2.6s linear infinite;
-  }
-
-  @keyframes feathersShineLoop{
-    0%{background-position:-60% 0;}
-    100%{background-position:160% 0;}
   }
 
   @keyframes candleSweep{
@@ -113,7 +88,7 @@
   @keyframes wordReveal{to{opacity:1;transform:translateY(0);}}
 
   @media (prefers-reduced-motion: reduce){
-    .sparkle,.feather-divider::after,.garland-strip::after{animation:none !important;}
+    .sparkle,.garland-strip::after{animation:none !important;}
     .hero-pattern,.mid-banner::before{background-image:var(--medallion-peacock-static) !important;}
     .reveal-word{animation:none !important;opacity:1 !important;transform:none !important;}
   }
@@ -909,8 +884,6 @@
   </div>
   <button class="filter-drawer-apply" onclick="document.getElementById('filterDrawer').classList.remove('open');document.getElementById('drawerOverlay').classList.remove('open');">Show 178 results</button>
 </div>
-
-<div class="feather-divider"></div>
 
 <footer>
   <div class="foot-grid">
