@@ -53,7 +53,6 @@
   /* candlelight sweep: a soft golden sheen glides over the existing decorative
      border every 8 to 10s, like light catching handcrafted jewelry. The border
      artwork itself (feather-divider / garland-strip) is untouched. */
-  .feather-divider::after,
   .garland-strip::after{
     content:"";
     position:absolute;
@@ -68,9 +67,30 @@
     mix-blend-mode:screen;
     pointer-events:none;
     animation:candleSweep 9s ease-in-out infinite;
-    animation-delay:var(--sweep-delay,0s);
+    animation-delay:.6s;
   }
-  .garland-strip::after{animation-delay:.6s;}
+
+  /* continuous shine: the dotted feather-divider gets an uninterrupted,
+     looping sheen rather than an occasional pass. */
+  .feather-divider::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(100deg,
+      rgba(242,186,116,0) 0%,
+      rgba(242,186,116,.85) 50%,
+      rgba(242,186,116,0) 100%);
+    background-repeat:no-repeat;
+    background-size:55% 100%;
+    mix-blend-mode:screen;
+    pointer-events:none;
+    animation:feathersShineLoop 2.6s linear infinite;
+  }
+
+  @keyframes feathersShineLoop{
+    0%{background-position:-60% 0;}
+    100%{background-position:160% 0;}
+  }
 
   @keyframes candleSweep{
     0%,78%{background-position:150% 0;opacity:0;}
@@ -880,7 +900,7 @@
   <button class="filter-drawer-apply" onclick="document.getElementById('filterDrawer').classList.remove('open');document.getElementById('drawerOverlay').classList.remove('open');">Show 178 results</button>
 </div>
 
-<div class="feather-divider" style="--sweep-delay:4.2s;"></div>
+<div class="feather-divider"></div>
 
 <footer>
   <div class="foot-grid">
