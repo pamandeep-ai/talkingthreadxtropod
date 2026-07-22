@@ -147,6 +147,7 @@
   .img-track{display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   .img-track::-webkit-scrollbar{display:none;}
   .img-track img{flex:none;width:100%;height:100%;object-fit:cover;object-position:top center;scroll-snap-align:start;-webkit-user-drag:none;user-select:none;}
+  .img-track video{flex:none;width:100%;height:100%;object-fit:cover;object-position:top center;scroll-snap-align:start;-webkit-user-drag:none;pointer-events:none;}
   .img-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:4;}
   .img-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.15);cursor:pointer;padding:0;transition:background .15s ease,transform .15s ease;}
   .img-dot.active{background:#fff;transform:scale(1.2);}
@@ -599,7 +600,7 @@
         <button class="wishlist-btn" aria-label="Add to wishlist"><svg class="icon-heart" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20.3C12 20.3 3.6 15 3.6 8.9C3.6 5.7 6 3.6 8.7 3.6C10.5 3.6 11.6 4.7 12 5.4C12.4 4.7 13.5 3.6 15.3 3.6C18 3.6 20.4 5.7 20.4 8.9C20.4 15 12 20.3 12 20.3Z"/></svg></button>
         <button class="quickview-btn" data-img="https://www.talkingthreads.in/cdn/shop/files/TT-2099JK-LH04_2_800x.jpg?v=1775918644" data-name="Emerald Embroidered Anarkali Gown & Skirt Set" aria-label="Quick view"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg><span class="qv-btn-label">Quick View</span></button>
         <div class="img-track">
-          <img src="https://www.talkingthreads.in/cdn/shop/files/TT-2099JK-LH04_2_800x.jpg?v=1775918644" alt="Emerald Embroidered Anarkali Gown & Skirt Set" loading="lazy">
+          <video class="product-main-video" data-max-plays="2" autoplay muted playsinline preload="auto" poster="assets/anarkali-main-poster.jpg" aria-label="Emerald Embroidered Anarkali Gown & Skirt Set video"><source src="assets/anarkali-main.mp4" type="video/mp4"></video>
           <img src="https://www.talkingthreads.in/cdn/shop/files/TT-2099JK-LH04_1_800x.jpg?v=1775918645" alt="Emerald Embroidered Anarkali Gown & Skirt Set back view" loading="lazy">
           <img src="https://www.talkingthreads.in/cdn/shop/files/TT-2099JK-LH04_4_800x.jpg?v=1775918813" alt="Emerald Embroidered Anarkali Gown & Skirt Set navy colourway" loading="lazy">
           <img src="https://www.talkingthreads.in/cdn/shop/files/TT-2099JK-LH04_3_800x.jpg?v=1775918812" alt="Emerald Embroidered Anarkali Gown & Skirt Set maroon colourway" loading="lazy">
@@ -1008,7 +1009,7 @@
   // respect reduced-motion: keep autoplaying videos on their first frame instead
   (function(){
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var vids = document.querySelectorAll('.hero-stage-video, .mid-banner-avatar');
+    var vids = document.querySelectorAll('.hero-stage-video, .mid-banner-avatar, .product-main-video');
     if(reduceMotion){
       vids.forEach(function(vid){
         vid.removeAttribute('autoplay');
@@ -1016,6 +1017,19 @@
       });
     }
   })();
+
+  // product card videos: play a fixed number of times (data-max-plays) then stop on the last frame
+  document.querySelectorAll('video[data-max-plays]').forEach(function(vid){
+    var maxPlays = parseInt(vid.getAttribute('data-max-plays'), 10) || 1;
+    var plays = 0;
+    vid.addEventListener('ended', function(){
+      plays++;
+      if(plays < maxPlays){
+        vid.currentTime = 0;
+        vid.play();
+      }
+    });
+  });
 
   // reveal the hero paragraph one word at a time, timed to start as the preloader fades
   (function(){
@@ -1111,7 +1125,8 @@
           e.stopPropagation();
           leadImg.src = v.img;
           leadImg.alt = v.label ? (card.querySelector('.product-name').textContent + ' - ' + v.label) : leadImg.alt;
-          track.scrollTo({left: 0, behavior: 'auto'});
+          var leadIndex = Array.prototype.indexOf.call(track.children, leadImg);
+          track.scrollTo({left: track.clientWidth * Math.max(0, leadIndex), behavior: 'auto'});
           bar.querySelectorAll('.quick-swatch').forEach(function(s){ s.classList.remove('active'); });
           btn.classList.add('active');
           selectedLabel = v.label || 'Colourway';
