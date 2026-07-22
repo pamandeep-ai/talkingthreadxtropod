@@ -140,24 +140,11 @@
   .trust-strip .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:14px 28px;font-size:12px;letter-spacing:.03em;font-weight:500;}
   .trust-strip .item{display:flex;align-items:center;gap:7px;}
   .trust-strip .item .shine-text{
-    display:inline-block;
-    background:linear-gradient(100deg, var(--ink) 30%, var(--gold) 45%, #fff 50%, var(--gold) 55%, var(--ink) 70%);
-    background-size:250% 100%;
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    animation:trustShine 3.4s ease-in-out infinite, trustBold 3.4s ease-in-out infinite;
-  }
-  .trust-strip .item:nth-child(2) .shine-text{animation-delay:.4s;}
-  .trust-strip .item:nth-child(3) .shine-text{animation-delay:.8s;}
-  .trust-strip .item:nth-child(4) .shine-text{animation-delay:1.2s;}
-  @keyframes trustShine{
-    0%{background-position:200% 0;}
-    100%{background-position:-200% 0;}
-  }
-  @keyframes trustBold{
-    0%,100%{font-weight:500;}
-    50%{font-weight:800;}
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    letter-spacing:.01em;
+    color:var(--ink);
   }
 
   /* toolbar */
