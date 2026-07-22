@@ -356,13 +356,15 @@
   .sold-out-overlay span{font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:#fff;padding:5px 9px;border-radius:1px;color:var(--wine);}
 
   /* mid-grid consultation banner */
-  .mid-banner{grid-column:1 / -1;background:var(--royal-deep);color:#fff;border-radius:2px;padding:36px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:8px 0;position:relative;overflow:hidden;}
+  .mid-banner{grid-column:1 / -1;background:var(--royal-deep);color:#fff;border-radius:14px;padding:36px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:8px 0;position:relative;overflow:hidden;box-shadow:0 14px 32px rgba(10,5,0,.28);border:1px solid rgba(255,255,255,.08);}
   .mid-banner::before{content:"";position:absolute;inset:0;opacity:.08;background-repeat:repeat;background-size:120px 120px;background-image:var(--medallion-peacock);}
-  .mid-banner > div, .mid-banner > a{position:relative;z-index:2;}
+  .mid-banner > div, .mid-banner > a, .mid-banner .mid-banner-lead{position:relative;z-index:2;}
+  .mid-banner-lead{display:flex;align-items:center;gap:18px;}
+  .mid-banner-avatar{width:64px;height:64px;flex:none;border-radius:50%;object-fit:cover;object-position:center;border:1px solid rgba(255,255,255,.55);box-shadow:0 6px 18px rgba(0,0,0,.35),0 0 0 5px rgba(255,255,255,.07);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
   .mid-banner h3{font-family:var(--font-display);font-size:22px;font-weight:500;margin-bottom:6px;}
   .mid-banner h3 em{font-style:italic;color:var(--gold-light);}
   .mid-banner p{font-size:12.5px;color:#EAD9D0;max-width:420px;}
-  .mid-banner-btn{background:var(--gold);color:var(--ink);padding:12px 24px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:1px;white-space:nowrap;}
+  .mid-banner-btn{background:rgba(242,186,116,.85);backdrop-filter:blur(8px) saturate(160%);-webkit-backdrop-filter:blur(8px) saturate(160%);border:1px solid rgba(255,255,255,.5);color:var(--ink);padding:12px 24px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:8px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.25);}
 
   /* editorial module */
   .editorial-module{grid-column:1 / -1;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 0;margin:10px 0 4px;}
@@ -710,9 +712,12 @@
     </div>
 
     <div class="mid-banner">
-      <div>
-        <h3>Not sure which silhouette <em>suits you</em>?</h3>
-        <p>Book a 20-minute video styling call with our in-house design team, free and with no obligation to order.</p>
+      <div class="mid-banner-lead">
+        <video class="mid-banner-avatar" autoplay muted loop playsinline preload="auto" poster="assets/stylist-avatar-poster.jpg" aria-hidden="true"><source src="assets/stylist-avatar.mp4" type="video/mp4"></video>
+        <div>
+          <h3>Not sure which silhouette <em>suits you</em>?</h3>
+          <p>Book a 20-minute video styling call with our in-house design team, free and with no obligation to order.</p>
+        </div>
       </div>
       <a href="#" class="mid-banner-btn">Book free styling call</a>
     </div>
@@ -1000,13 +1005,15 @@
     document.body.style.overflow = '';
   }
 
-  // respect reduced-motion: keep the hero video on its poster frame instead of autoplaying
+  // respect reduced-motion: keep autoplaying videos on their first frame instead
   (function(){
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var vid = document.querySelector('.hero-stage-video');
-    if(vid && reduceMotion){
-      vid.removeAttribute('autoplay');
-      vid.pause();
+    var vids = document.querySelectorAll('.hero-stage-video, .mid-banner-avatar');
+    if(reduceMotion){
+      vids.forEach(function(vid){
+        vid.removeAttribute('autoplay');
+        vid.pause();
+      });
     }
   })();
 
